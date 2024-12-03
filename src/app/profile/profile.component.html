@@ -1,0 +1,41 @@
+
+<h2 mat-dialog-title>
+  <mat-dialog-actions align="above" align="end">
+    <button mat-button color="warn" [mat-dialog-close]>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+  {{statement}}
+  
+</h2>
+<mat-dialog-content *ngIf="this.total > 0"> 
+  <mat-radio-group aria-label="time unit" [(ngModel)]="timeUnit">
+    <mat-radio-button value="second">Seconds</mat-radio-button>
+    <mat-radio-button value="minute">Minutes</mat-radio-button>
+    <mat-radio-button value="hour">Hours</mat-radio-button>
+  </mat-radio-group>
+  <div class="button-row" *ngIf="this.visible" >
+    <button class="convert" mat-button mat-raised-button color="primary" (click)="convert(timeUnit)">Convert Time Unit</button>
+  </div>
+    
+    <div>
+      <div class="chart" >
+        <canvas baseChart
+                [data]="pieChartData"
+                [type]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="chartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div>
+          <canvas baseChart 
+            [data]="barChartData"
+            [type]="barChartType"
+            [options]="barChartOptions"
+            [plugins]="chartPlugins"
+            ></canvas>  
+    </div>
+  
+    
+    </mat-dialog-content>
